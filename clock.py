@@ -11,12 +11,15 @@ def print_in_center(width, text):
 	print(f'\r{text.center(width)}', end='', flush=True)
 
 while True:
-	now = datetime.now()
-	
-	if enable_seconds:
-		time = now.strftime('%d-%m-%Y %H:%M:%S')
-	else:
-		time = now.strftime('%d-%m-%Y %H:%M')
+	try:
+		now = datetime.now()
 		
-	print_in_center(terminal_width, time)
-	sleep(1)
+		if enable_seconds:
+			time = now.strftime('%d-%m-%Y %H:%M:%S')
+		else:
+			time = now.strftime('%d-%m-%Y %H:%M')
+			
+		print_in_center(terminal_width, time)
+		sleep(1)
+	except KeyboardInterrupt:
+		exit()
