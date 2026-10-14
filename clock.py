@@ -1,6 +1,9 @@
 import shutil
+import sys
 from datetime import datetime
 from time import sleep
+
+enable_seconds = True if '-s' in sys.argv else False
 
 terminal_width, _ = shutil.get_terminal_size()
 
@@ -9,6 +12,11 @@ def print_in_center(width, text):
 
 while True:
 	now = datetime.now()
-	time = now.strftime('%d-%m-%Y %H:%M:%S')
+	
+	if enable_seconds:
+		time = now.strftime('%d-%m-%Y %H:%M:%S')
+	else:
+		time = now.strftime('%d-%m-%Y %H:%M')
+		
 	print_in_center(terminal_width, time)
 	sleep(1)
